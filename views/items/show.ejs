@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">SalesPlace</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= item.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$<%= item.price %></h4>
+                    <h4><a><%= item.summary %></a></h4>
+                    <p><%- item.description %></p>
+                    <p><em>Submited by: <%= item.author.name %></em></p>
+                    <% if(currentUser && item.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-sm btn-warning" href="/items/<%= item._id %>/edit">Edit</a>
+                        <form class="delete-form" method="POST" action="/items/<%= item._id %>?_method=DELETE">
+                            <button class="btn btn-sm btn-danger pull-right">
+                                Delete
+                            </button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <div class="well">
+                <div>
+                    <a class="btn btn-sm btn-primary pull-left" href="/items"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Go Back!</a>
+                    <a class="btn btn-sm btn-success pull-right" href="/items/<%= item._id %>/comments/new">Add New Comment</a>
+                </div>
+                <br />
+                <br />
+                <% item.comments.forEach(function(comment){%>
+                    <hr class="hr-gradient">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.name %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p>
+                                <%- comment.text %>
+                            </p>
+                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                <a class="btn btn-sm btn-warning" href="/items/<%= item._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                                <form class="delete-form" id="delete-form" method="POST" action="/items/<%= item._id %>/comments/<%= comment._id %>?_method=DELETE">
+                                    <button class="btn btn-sm btn-danger pull-right" >
+                                        Delete
+                                    </button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

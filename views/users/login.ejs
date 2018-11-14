@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Login</h1>
+        <div style="width: 60%; margin: 25px auto; text-align: center">
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <input type="text" name="username" placeholder="Login" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-sm btn-primary">Login</button>
+                </div>
+            </form>
+            <p>Do not have an account yet? <a href="/register">Register!</a></p>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

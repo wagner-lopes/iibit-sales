@@ -12,5 +12,5 @@ var commentSchema = mongoose.Schema({
    }
 });
 
-//Setup a database model called "Campgrounds"
+//Setup a database model called "iibit-sales"
 module.exports = mongoose.model("Comment", commentSchema);

@@ -19,7 +19,7 @@ var commentRoutes   = require("./routes/comments"),
 //  APP CONFIG  
 //======================
 //Database connection
-var databaseurl = process.env.DATABASEURL || "mongodb://localhost/salesplace";
+var databaseurl = process.env.DATABASEURL || "mongodb://localhost/iibit-sales";
 mongoose.connect(databaseurl);
 //Interpret the body allowing the easyer acces to the body elements and variables
 app.use(bodyParser.urlencoded({extended: true}));
@@ -68,4 +68,4 @@ app.use("/items/:id/comments", commentRoutes);
 //======================
 //  SERVER CONFIG  
 //======================
-app.listen(process.env.PORT, process.env.IP, () => console.log("Server started!!"));
+app.listen(process.env.PORT || 3000, process.env.IP, () => console.log(`Server started at PORT: ${process.env.PORT} !!`));

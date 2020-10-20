@@ -4,7 +4,7 @@ var express     = require("express"),
     User        = require("../models/user");
 
 //ROOT ROUTE
-router.get("/", (req, res) => res.render("landing"));
+router.get("/", (req, res) => res.redirect("/items"));
 
 //USER REGISTRY
 router.get("/register", (req, res) => res.render("users/register"));
@@ -21,7 +21,7 @@ router.post("/register", (req, res) => {
             //The "local" indicates the auth strategy
             //This also could be "facebook" or "tweeter", for example
             passport.authenticate("local")(req, res, () => {
-                req.flash("success", "Welcome to SalesPlace " + user.name + "!");
+                req.flash("success", "Welcome to IIBIT Sales " + user.name + "!");
                 res.redirect("/items");
             });
         }
